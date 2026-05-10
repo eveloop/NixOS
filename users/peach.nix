@@ -37,12 +37,14 @@
       sops.secrets.git_name = {
         sopsFile = ../secrets/peach.yaml;
       };
-      home.activation.gitSecrets = lib.hm.dag.entryAfter [ "setupSecrets" ] ''
-        mkdir -p ~/.config/git
-        install -m 600 /dev/null ~/.config/git/secrets.inc
-        echo "[user]" > ~/.config/git/secrets.inc
-        echo "  email = $(cat ${config.sops.secrets.git_email.path})" >> ~/.config/git/secrets.inc
-        echo "  name = $(cat ${config.sops.secrets.git_name.path})" >> ~/.config/git/secrets.inc
-      '';
+      sops.templates."git-secrets" = {
+        path = "${config.home.homeDirectory}/.config/git/secrets.inc";
+        mode = "0600";
+        content = ''
+          [user]
+            email = ${config.sops.placeholder.git_email}
+            name = ${config.sops.placeholder.git_name}
+        '';
+      };
     };
 }
