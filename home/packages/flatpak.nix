@@ -6,7 +6,6 @@
     "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
     "com.spotify.Client"
-    "com.usebottles.bottles"
     "md.obsidian.Obsidian"
     "org.cryptomator.Cryptomator"
     "org.prismlauncher.PrismLauncher"
