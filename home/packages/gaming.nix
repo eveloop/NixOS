@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     archipelago
     bolt-launcher
+    deadlock-mod-manager
     ferium
     mangohud
     poptracker
