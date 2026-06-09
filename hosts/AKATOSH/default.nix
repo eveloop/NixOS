@@ -20,9 +20,12 @@ in
         ./wifi.nix
       ];
 
-      boot.loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
+      boot = {
+        loader = {
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
+        };
+        kernel.sysctl."fs.inotify.max_user_watches" = 524288;
       };
 
       hardware = {
