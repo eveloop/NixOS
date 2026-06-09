@@ -4,6 +4,7 @@
     isNormalUser = true;
     description = "Peach";
     extraGroups = [
+      "gamemode"
       "networkmanager"
       "wheel"
     ];
