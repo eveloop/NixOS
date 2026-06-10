@@ -11,6 +11,7 @@
     protonplus
     protontricks
     r2modman
+    rimsort
     runelite
     samrewritten
     winetricks
