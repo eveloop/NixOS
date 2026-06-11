@@ -60,7 +60,7 @@
       # Nix
       nixclean = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
       nixfmt = "sudo nix fmt .";
-      nixpkg = "nix-shell -p";
+      nixshell = "nix-shell -p";
       nixrs = "sudo nixos-rebuild switch";
       ns = "nix-search";
     };
