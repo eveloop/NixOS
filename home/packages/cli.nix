@@ -15,6 +15,7 @@
     jq
     neovim
     nix-output-monitor
+    nix-search-cli
     presenterm
     rclone
     ripgrep

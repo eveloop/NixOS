@@ -62,7 +62,7 @@
       nixfmt = "sudo nix fmt .";
       nixpkg = "nix-shell -p";
       nixrs = "sudo nixos-rebuild switch";
-      nixsearch = "nix search nixpkgs";
+      ns = "nix-search";
     };
 
     # Custom Fish functions
