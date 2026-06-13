@@ -3,7 +3,6 @@
   services.flatpak.packages = [
     "com.bitwarden.desktop"
     "com.calibre_ebook.calibre"
-    "com.discordapp.Discord"
     "com.heroicgameslauncher.hgl"
     "com.spotify.Client"
     "md.obsidian.Obsidian"

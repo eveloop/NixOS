@@ -6,6 +6,7 @@
     ani-cli
     cava
     easyeffects
+    vesktop
     ffmpeg
     gpu-screen-recorder-gtk
     librewolf
