@@ -39,15 +39,6 @@ in
 
         graphics = {
           enable = true;
-          # Intel GPU specific packages
-          extraPackages = with pkgs; [
-            intel-compute-runtime
-            intel-gmmlib
-            intel-graphics-compiler
-            intel-media-driver
-            mesa
-            vpl-gpu-rt
-          ];
         };
       };
 
