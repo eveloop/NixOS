@@ -26,6 +26,8 @@ in
           efi.canTouchEfiVariables = true;
         };
         kernel.sysctl."fs.inotify.max_user_watches" = 524288;
+        kernelParams = [ "amd_pstate=active" ];
+        kernelPackages = pkgs.linuxPackages_zen;
       };
 
       hardware = {
@@ -39,7 +41,10 @@ in
 
         graphics = {
           enable = true;
+          extraPackages32 = with pkgs.driversi686Linux; [ mesa ];
         };
+
+        amdgpu.overdrive.enable = true;
       };
 
       i18n.defaultLocale = "en_US.UTF-8";
