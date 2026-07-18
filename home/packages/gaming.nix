@@ -1,5 +1,5 @@
 # Gaming-related packages and tools
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -15,5 +15,6 @@
     samrewritten
     winetricks
     wineWow64Packages.staging
+    (import inputs.creamlinux-installer { inherit pkgs; })
   ];
 }

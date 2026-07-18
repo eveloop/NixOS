@@ -3,6 +3,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    creamlinux-installer = {
+      url = "github:Novattz/creamlinux-installer?rev=7c16b63b41f984a1f480fa14ce78da4cc4869a66";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +55,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.sharedModules = [
               sops-nix.homeManagerModules.sops
               nix-flatpak.homeManagerModules.nix-flatpak
