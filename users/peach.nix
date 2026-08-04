@@ -1,3 +1,4 @@
+{ profiles }:
 { pkgs, ... }:
 {
   users.users.peach = {
@@ -11,34 +12,21 @@
     shell = pkgs.fish;
   };
 
-  # Home Manager configuration
-  home-manager.users.peach =
-    {
-      config,
-      pkgs,
-      lib,
-      ...
-    }:
-    {
-      imports = [
-        ../home/default.nix
-      ];
+  home-manager.users.peach = { config, ... }: {
+    imports = map (profile: ../home/profiles/${profile}.nix) profiles;
 
-      home = {
-        username = "peach";
-        homeDirectory = "/home/peach";
-        stateVersion = "25.11";
-        sessionVariables.EDITOR = "nvim";
-      };
+    home = {
+      username = "peach";
+      homeDirectory = "/home/peach";
+      stateVersion = "25.11";
+      sessionVariables.EDITOR = "nvim";
+    };
 
-      sops.age.keyFile = "/home/peach/.config/sops/age/keys.txt";
-      sops.secrets.git_email = {
-        sopsFile = ../secrets/peach.yaml;
-      };
-      sops.secrets.git_name = {
-        sopsFile = ../secrets/peach.yaml;
-      };
-      sops.templates."git-secrets" = {
+    sops = {
+      age.keyFile = "/home/peach/.config/sops/age/keys.txt";
+      secrets.git_email.sopsFile = ../secrets/peach.yaml;
+      secrets.git_name.sopsFile = ../secrets/peach.yaml;
+      templates."git-secrets" = {
         path = "${config.home.homeDirectory}/.config/git/secrets.inc";
         mode = "0600";
         content = ''
@@ -48,4 +36,5 @@
         '';
       };
     };
+  };
 }

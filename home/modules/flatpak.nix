@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   services.flatpak.packages = [
     "com.bitwarden.desktop"
     "com.calibre_ebook.calibre"

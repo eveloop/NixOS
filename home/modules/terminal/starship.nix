@@ -1,5 +1,5 @@
 # Cross-shell prompt
-{ pkgs, ... }:
+_:
 
 {
   programs.starship = {

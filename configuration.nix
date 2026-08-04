@@ -1,5 +1,5 @@
 # Main system configuration - universal settings only
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   system.stateVersion = "25.11";
@@ -13,10 +13,10 @@
   programs.neovim.defaultEditor = true;
 
   environment = {
-    systemPackages = with pkgs; [
-      git
-      wget
-      gparted
+    systemPackages = [
+      pkgs.git
+      pkgs.wget
+      pkgs.gparted
     ];
   };
 }

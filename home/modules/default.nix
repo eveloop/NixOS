@@ -1,15 +1,21 @@
-{ ... }:
+_:
 
 {
   imports = [
-    ./applications.nix
     ./archives.nix
     ./cli.nix
-    ./development
+    ./crush.nix
+    ./desktop-apps.nix
+    ./development.nix
     ./flatpak.nix
+    ./gamedev.nix
     ./gaming.nix
+    ./git.nix
+    ./media.nix
     ./monitoring.nix
     ./networking.nix
     ./security.nix
+    ./terminal
+    ./vesktop.nix
   ];
 }

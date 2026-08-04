@@ -1,5 +1,5 @@
 # Yazi - terminal-based file manager
-{ pkgs, ... }:
+_:
 
 {
   programs.yazi = {

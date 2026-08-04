@@ -2,8 +2,8 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    gdtoolkit_4
-    godot_4
+  home.packages = [
+    pkgs.gdtoolkit_4
+    pkgs.godot_4
   ];
 }

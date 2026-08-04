@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    maple-mono.NF
+  home.packages = [
+    pkgs.maple-mono.NF
   ];
 
   programs.wezterm = {

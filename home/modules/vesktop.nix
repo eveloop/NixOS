@@ -1,6 +1,7 @@
-# home/programs/vesktop.nix
 { pkgs, ... }:
 {
+  home.packages = [ pkgs.vesktop ];
+
   home.file.".config/systemd/user/app-vesktop@autostart.service.d/override.conf".text = ''
     [Unit]
     After=graphical-session.target
