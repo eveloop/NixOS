@@ -121,6 +121,7 @@
         enable = true;
         support32Bit = true;
       };
+      pulse.enable = true;
       # Helps resolve audio output crackling when using heavier audio effects in Easy Effects
       extraConfig.pipewire."custom-adjustments" = {
         "context.properties" = {
