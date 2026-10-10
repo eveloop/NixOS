@@ -6,6 +6,7 @@
     pkgs.archipelago
     pkgs.deadlock-mod-manager
     pkgs.ferium
+    pkgs.heroic
     pkgs.mangohud
     pkgs.poptracker
     pkgs.protonplus

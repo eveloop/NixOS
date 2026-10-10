@@ -2,7 +2,6 @@ _: {
   services.flatpak.packages = [
     "com.bitwarden.desktop"
     "com.calibre_ebook.calibre"
-    "com.heroicgameslauncher.hgl"
     {
       appId = "io.github.Amethyst.ModManager";
       origin = "modmanager-origin";
