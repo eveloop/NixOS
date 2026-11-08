@@ -6,10 +6,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    creamlinux-installer = {
-      url = "github:Novattz/creamlinux-installer?rev=7c16b63b41f984a1f480fa14ce78da4cc4869a66";
-      flake = false;
-    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";

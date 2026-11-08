@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -34,9 +34,12 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   networking = {
-    nameservers = [ "1.1.1.1" ];
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
     networkmanager = {
-      dns = "none";
+      dns = lib.mkForce "none";
       wifi.powersave = false;
       enable = true;
     };
@@ -46,20 +49,28 @@
         allowedTCPPorts = [
           8096
           8920
-        ]; # Jellyfin
-        allowedTCPPortRanges = [
-          {
-            from = 1714;
-            to = 1764;
-          }
-        ]; # KDE Connect
-        allowedUDPPorts = [ 7359 ]; # Jellyfin
+          27015 # Steam SRCDS Rcon port
+          27036 # Steam Remote Play / peer discovery
+          27037 # Steam Remote Play
+          27040 # Steam local network game transfers (data)
+        ];
+        allowedUDPPorts = [
+          7359 # Jellyfin
+          10400
+          10401 # Steam Remote Play
+          27015 # Steam SRCDS gameplay traffic
+          27036 # Steam Remote Play peer discovery
+        ];
         allowedUDPPortRanges = [
           {
             from = 1714;
             to = 1764;
-          }
-        ]; # KDE Connect
+          } # KDE Connect
+          {
+            from = 27031;
+            to = 27035;
+          } # Steam Remote Play
+        ];
       };
     };
     hostName = "AKATOSH";
@@ -74,9 +85,6 @@
     kdeconnect.enable = true;
     steam = {
       enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
       gamescopeSession.enable = true;
     };
   };
@@ -112,7 +120,16 @@
 
     pcscd.enable = true;
 
-    resolved.enable = false;
+    resolved = {
+      enable = true;
+      settings.Resolve = {
+        DNSOverTLS = "yes";
+        FallbackDNS = [
+          "1.1.1.1"
+          "1.0.0.1"
+        ];
+      };
+    };
 
     pipewire = {
       enable = true;

@@ -117,8 +117,9 @@ let
 in
 {
   home.packages = [
-    pkgs.opencode
     pkgs.herdr
+    pkgs.opencode
+    pkgs.opencode-desktop
   ];
 
   home.file = lib.listToAttrs (
