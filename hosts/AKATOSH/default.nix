@@ -109,13 +109,6 @@
       enable = true;
     };
 
-    mullvad-vpn = {
-      enable = true;
-      gui.enable = true;
-      enableExcludeWrapper = false;
-      enableEarlyBootBlocking = true;
-    };
-
     openssh = {
       enable = true;
       openFirewall = false;
