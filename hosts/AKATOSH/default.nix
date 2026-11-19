@@ -7,11 +7,37 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+        bootCounting.enable = true;
+        editor = false;
+      };
       efi.canTouchEfiVariables = true;
     };
-    kernel.sysctl."fs.inotify.max_user_watches" = 524288;
+    kernel.sysctl = {
+      # Kernel hardening baseline
+      "kernel.dmesg_restrict" = 1;
+      "kernel.kptr_restrict" = 2;
+      "net.core.bpf_jit_harden" = 2;
+      "kernel.unprivileged_bpf_disabled" = 1;
+      "fs.protected_fifos" = 2;
+      "fs.protected_regular" = 2;
+    };
     kernelParams = [ "amd_pstate=active" ];
+    # TRIM through dm-crypt (declared here via module merging; device paths
+    # stay in hardware-configuration.nix).
+    initrd.luks.devices = {
+      root = {
+        allowDiscards = true;
+        bypassWorkqueues = true;
+      };
+      small_ssd = {
+        allowDiscards = true;
+        bypassWorkqueues = true;
+      };
+      swap.allowDiscards = true;
+    };
   };
 
   hardware = {
@@ -25,7 +51,6 @@
 
     graphics = {
       enable = true;
-      extraPackages32 = [ pkgs.driversi686Linux.mesa ];
     };
 
     amdgpu.overdrive.enable = true;
@@ -47,29 +72,10 @@
       enable = true;
       interfaces."wlp4s0" = {
         allowedTCPPorts = [
-          8096
-          8920
-          27015 # Steam SRCDS Rcon port
-          27036 # Steam Remote Play / peer discovery
-          27037 # Steam Remote Play
-          27040 # Steam local network game transfers (data)
+          8096 # Jellyfin
         ];
         allowedUDPPorts = [
           7359 # Jellyfin
-          10400
-          10401 # Steam Remote Play
-          27015 # Steam SRCDS gameplay traffic
-          27036 # Steam Remote Play peer discovery
-        ];
-        allowedUDPPortRanges = [
-          {
-            from = 1714;
-            to = 1764;
-          } # KDE Connect
-          {
-            from = 27031;
-            to = 27035;
-          } # Steam Remote Play
         ];
       };
     };
@@ -86,6 +92,8 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
     };
   };
 
@@ -95,20 +103,25 @@
     displayManager.sddm.enable = true;
     flatpak.enable = true;
 
+    fstrim.enable = true;
+
     jellyfin = {
       enable = true;
-      dataDir = "/var/lib/jellyfin";
     };
 
     mullvad-vpn = {
       enable = true;
       gui.enable = true;
+      enableExcludeWrapper = false;
+      enableEarlyBootBlocking = true;
     };
 
     openssh = {
       enable = true;
+      openFirewall = false;
       settings = {
         PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         ListenAddress = "127.0.0.1";
         X11Forwarding = false;
@@ -119,6 +132,9 @@
     };
 
     pcscd.enable = true;
+
+    # SMART health monitoring.
+    smartd.enable = true;
 
     resolved = {
       enable = true;
@@ -161,6 +177,8 @@
     };
     polkit.enable = true;
     rtkit.enable = true;
+    # This conflicts with hibernation, review if considering to enable later.
+    protectKernelImage = true;
   };
 
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];

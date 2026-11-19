@@ -6,9 +6,9 @@ _:
     enable = true;
     shellWrapperName = "y";
     settings = {
-      manager = {
+      mgr = {
         show_hidden = true;
-        sort_by = "modified";
+        sort_by = "mtime";
         sort_reverse = true;
       };
       opener = {

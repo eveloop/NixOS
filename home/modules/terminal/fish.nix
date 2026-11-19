@@ -2,11 +2,22 @@
 { pkgs, ... }:
 
 {
+  programs = {
+    zoxide = {
+      enable = true;
+      options = [
+        "--cmd"
+        "cd"
+      ];
+    };
+    fzf.enable = true;
+    nix-index.enable = true;
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      zoxide init fish | source
     '';
 
     plugins = [
@@ -45,21 +56,20 @@
 
       # Docker
       d = "docker";
-      dc = "docker-compose";
+      dc = "docker compose";
       dex = "docker exec -it";
       di = "docker images";
       dpa = "docker ps -a";
       dps = "docker ps";
 
       # Other
-      cd = "z";
       du = "dust";
       find = "fd";
       grep = "rg";
 
       # Nix
       nixclean = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
-      nixfmt = "sudo nix fmt .";
+      nixfmt = "nix fmt .";
       nixshell = "nix-shell -p";
       nixrs = "sudo nixos-rebuild switch";
       ns = "nix-search";

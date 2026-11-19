@@ -5,7 +5,9 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    # Pinned to the stable ?ref=latest branch (v0.8.0) — tracking `main`
+    # is upstream's own "unstable, might break installs" branch.
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +47,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "hm-bak";
                 extraSpecialArgs = { inherit inputs; };
                 sharedModules = [
                   sops-nix.homeManagerModules.sops

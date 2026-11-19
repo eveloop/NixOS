@@ -41,16 +41,6 @@
     ];
   };
 
-  fileSystems."/var/lib/lxd/shmounts" = {
-    device = "tmpfs";
-    fsType = "tmpfs";
-  };
-
-  fileSystems."/var/lib/lxd/devlxd" = {
-    device = "tmpfs";
-    fsType = "tmpfs";
-  };
-
   boot.initrd.luks.devices."small_ssd".device =
     "/dev/disk/by-uuid/9888dd6c-6f07-4f7a-8a57-78931bdc29ad";
 

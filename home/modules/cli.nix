@@ -9,7 +9,6 @@
     pkgs.fastfetch
     pkgs.fd
     pkgs.file
-    pkgs.fzf
     pkgs.gitui
     pkgs.glow
     pkgs.jq
@@ -20,6 +19,5 @@
     pkgs.tree
     pkgs.which
     pkgs.yq-go
-    pkgs.zoxide
   ];
 }

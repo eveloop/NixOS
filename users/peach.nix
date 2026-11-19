@@ -10,8 +10,8 @@
       "wheel"
     ];
     shell = pkgs.fish;
+    linger = true;
   };
-  systemd.services."home-manager-peach".serviceConfig.TimeoutStartSec = lib.mkForce "1h";
 
   home-manager.users.peach = { config, ... }: {
     imports = map (profile: ../home/profiles/${profile}.nix) profiles;

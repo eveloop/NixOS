@@ -8,15 +8,15 @@ let
   wayfinderSrc = pkgs.fetchFromGitHub {
     owner = "mattpocock";
     repo = "skills";
-    rev = "84fdeffd12f2ee307994d1eb6feb48173b6e0502";
-    hash = "sha256-pseSJJb5nBBGPzpxA1GzjGLB9OrT+u0At1saJ4NqZ1E=";
+    rev = "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d";
+    hash = "sha256-3vhd77xfZjKUYJsIwPFevIZPUAzUgZXr0RYj5NQrBwk=";
   };
 
   simpleEnglishSrc = pkgs.fetchFromGitHub {
     owner = "AminBlg";
     repo = "SimpleEnglish";
-    rev = "59bfc702197a5aadc9cd1e37d17f290d8d50dcd3";
-    hash = "sha256-QmlV9OZ4CNxI+pV7jDcn4n3Zet1+9W7h5oTNCUQ/vrY=";
+    rev = "a6fcb4fde098b33617cc1578d151ebf58774b883";
+    hash = "sha256-p1ffLp/3Yg1yBfCikBwua3ieVBCNyZfTZH6GBAxNREA=";
   };
 
   skills = [
@@ -69,6 +69,10 @@ let
       source = "${wayfinderSrc}/skills/engineering/grill-with-docs";
     }
     {
+      name = "wait-what";
+      source = "${wayfinderSrc}/skills/productivity/wait-what";
+    }
+    {
       name = "teach";
       source = "${wayfinderSrc}/skills/productivity/teach";
     }
@@ -90,8 +94,20 @@ let
       source = "${wayfinderSrc}/skills/engineering/implement";
     }
     {
+      name = "implement-spec";
+      source = "${wayfinderSrc}/skills/engineering/implement-spec";
+    }
+    {
       name = "code-review";
       source = "${wayfinderSrc}/skills/engineering/code-review";
+    }
+    {
+      name = "pr";
+      source = "${wayfinderSrc}/skills/engineering/pr";
+    }
+    {
+      name = "retro";
+      source = "${wayfinderSrc}/skills/engineering/retro";
     }
     {
       name = "codebase-design";
@@ -102,16 +118,23 @@ let
       source = "${wayfinderSrc}/skills/engineering/diagnosing-bugs";
     }
     {
-      name = "resolving-merge-conflicts";
-      source = "${wayfinderSrc}/skills/engineering/resolving-merge-conflicts";
-    }
-    {
       name = "triage";
       source = "${wayfinderSrc}/skills/engineering/triage";
     }
     {
       name = "wizard";
       source = "${wayfinderSrc}/skills/engineering/wizard";
+    }
+    # Standalone: hand-off questions to someone else when the blocker
+    # is outside your head or codebase (referenced by ask-matt).
+    {
+      name = "to-questionnaire";
+      source = "${wayfinderSrc}/skills/productivity/to-questionnaire";
+    }
+    # Reference for writing documents agents consume (skills, AGENTS.md).
+    {
+      name = "writing-for-agents";
+      source = "${wayfinderSrc}/skills/productivity/writing-for-agents";
     }
   ];
 in
